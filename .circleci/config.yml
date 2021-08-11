@@ -1,0 +1,36 @@
+version: 2.1
+
+jobs:
+  deploy_prod:
+    circleci_ip_ranges: true
+    docker:
+      - image: cimg/base
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - run:
+          name: Deploy to Production
+          command: curl https://webhook.site/1d66449f-36c7-4d86-ab3e-c459e5466da2
+
+  deploy_test:
+    circleci_ip_ranges: false
+    docker:
+      - image: cimg/base
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - run:
+          name: Deploy to Staging
+          command: curl https://webhook.site/1d66449f-36c7-4d86-ab3e-c459e5466da2
+
+workflows:
+  test_ip_ranges:
+    jobs:
+      - deploy_prod:
+        context:
+          - docker-hub-creds
+      - deploy_test:
+        context:
+          - docker-hub-creds
