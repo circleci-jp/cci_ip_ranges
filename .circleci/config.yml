@@ -1,36 +1,15 @@
 version: 2.1
 
 jobs:
-  deploy_prod:
+  deploy_macos:
     circleci_ip_ranges: true
-    docker:
-      - image: cimg/base:stable
-        auth:
-          username: $DOCKERHUB_USER
-          password: $DOCKERHUB_PASSWORD
+    macos:
+      xcode: 11.7.0
     steps:
-      - run:
-          name: Deploy to Production
-          command: curl https://webhook.site/1d66449f-36c7-4d86-ab3e-c459e5466da2?type=Production
-
-  deploy_test:
-    circleci_ip_ranges: false
-    docker:
-      - image: cimg/base:stable
-        auth:
-          username: $DOCKERHUB_USER
-          password: $DOCKERHUB_PASSWORD
-    steps:
-      - run:
-          name: Deploy to Staging
-          command: curl https://webhook.site/1d66449f-36c7-4d86-ab3e-c459e5466da2?type=Test
+        - checkout
+        - run: echo 'chruby ruby-2.7' >> ~/.bash_profile
 
 workflows:
   test_ip_ranges:
     jobs:
-      - deploy_prod: 
-          context: 
-          - docker-hub-creds
-      - deploy_test: 
-          context: 
-          - docker-hub-creds
+      - deploy_macos: 
