@@ -28,9 +28,9 @@ jobs:
 workflows:
   test_ip_ranges:
     jobs:
-      - deploy_prod:
-        context:
+      - deploy_prod: 
+          context: 
           - docker-hub-creds
-      - deploy_test:
-        context:
+      - deploy_test: 
+          context: 
           - docker-hub-creds
