@@ -7,8 +7,9 @@ jobs:
       xcode: 11.7.0
     steps:
         - checkout
-        - run: echo 'chruby ruby-2.7' >> ~/.bash_profile
-
+        - run: | 
+            export SERVER_IP=`ipconfig getifaddr en0`
+            echo $SERVER_IP
 workflows:
   test_ip_ranges:
     jobs:
