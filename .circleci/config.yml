@@ -12,4 +12,4 @@ jobs:
 workflows:
   test_ip_ranges:
     jobs:
-      - deploy_macos: 
+      - deploy_macos 
