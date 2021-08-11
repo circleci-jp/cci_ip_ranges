@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  deploy_macos:
+  ip_ranges_macos:
     circleci_ip_ranges: true
     macos:
       xcode: 11.7.0
@@ -11,6 +11,6 @@ jobs:
             export SERVER_IP=`ipconfig getifaddr en0`
             echo $SERVER_IP
 workflows:
-  test_ip_ranges:
+  test_macos_ip_ranges:
     jobs:
-      - deploy_macos 
+      - ip_ranges_macos 
