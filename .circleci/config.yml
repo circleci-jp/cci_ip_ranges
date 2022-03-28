@@ -11,8 +11,7 @@ jobs:
     steps:
       - run:
           name: Deploy to Production
-          command: curl https://webhook.site/1d66449f-36c7-4d86-ab3e-c459e5466da2?type=Production
-
+          command: curl https://webhook.site/b1417d51-f1b3-4a97-8b62-2e7b7c0ae392?type=Production
   deploy_test:
     circleci_ip_ranges: false
     docker:
@@ -23,7 +22,7 @@ jobs:
     steps:
       - run:
           name: Deploy to Staging
-          command: curl https://webhook.site/1d66449f-36c7-4d86-ab3e-c459e5466da2?type=Test
+          command: curl https://webhook.site/b1417d51-f1b3-4a97-8b62-2e7b7c0ae392?type=Test
 
 workflows:
   test_ip_ranges:
